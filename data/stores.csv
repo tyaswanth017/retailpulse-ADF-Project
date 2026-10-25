@@ -1,0 +1,11 @@
+store_id,store_name,city,region,store_type
+S01,RetailPulse Hyderabad,Hyderabad,South,Mall
+S02,RetailPulse Bengaluru,Bengaluru,South,High Street
+S03,RetailPulse Chennai,Chennai,South,Mall
+S04,RetailPulse Mumbai,Mumbai,West,High Street
+S05,RetailPulse Pune,Pune,West,Mall
+S06,RetailPulse Delhi,Delhi,North,High Street
+S07,RetailPulse Jaipur,Jaipur,North,Mall
+S08,RetailPulse Kolkata,Kolkata,East,High Street
+S09,RetailPulse Bhubaneswar,Bhubaneswar,East,Mall
+S10,RetailPulse Ahmedabad,Ahmedabad,West,High Street

@@ -1,0 +1,25 @@
+
+{
+  "name": "DS_github_API",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "LS_github_API",
+      "type": "LinkedServiceReference"
+    },
+    "parameters": {
+      "pFileName": {
+        "type": "String"
+      }
+    },
+    "type": "Binary",
+    "typeProperties": {
+      "location": {
+        "type": "HttpServerLocation",
+        "relativeUrl": {
+          "value": "@dataset().pFileName",
+          "type": "Expression"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+
+{
+  "name": "LS_github_API",
+  "properties": {
+    "type": "HttpServer",
+    "typeProperties": {
+      "url": "https://raw.githubusercontent.com/tyaswanth017/retailpulse-azure-data-engineering/master/data/",
+      "authenticationType": "Anonymous",
+      "enableServerCertificateValidation": true
+    }
+  }
+}

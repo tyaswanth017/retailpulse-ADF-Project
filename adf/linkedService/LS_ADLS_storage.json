@@ -1,0 +1,10 @@
+
+{
+  "name": "LS_ADLS_storage",
+  "properties": {
+    "type": "AzureBlobFS",
+    "typeProperties": {
+      "url": "https://retailpulsestorageacc.dfs.core.windows.net/"
+    }
+  }
+}

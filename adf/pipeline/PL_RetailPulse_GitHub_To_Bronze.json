@@ -1,0 +1,100 @@
+
+{
+  "name": "PL_RetailPulse_GitHub_To_Bronze",
+  "properties": {
+    "parameters": {
+      "pFileList": {
+        "type": "Array",
+        "defaultValue": [
+          {
+            "name": "sales.csv",
+            "folder": "sales"
+          },
+          {
+            "name": "customers.csv",
+            "folder": "customers"
+          },
+          {
+            "name": "products.csv",
+            "folder": "products"
+          },
+          {
+            "name": "stores.csv",
+            "folder": "stores"
+          }
+        ]
+      }
+    },
+    "activities": [
+      {
+        "name": "FE_Process_Files",
+        "type": "ForEach",
+        "typeProperties": {
+          "isSequential": true,
+          "items": {
+            "value": "@pipeline().parameters.pFileList",
+            "type": "Expression"
+          },
+          "activities": [
+            {
+              "name": "CP_Copy_Current_File",
+              "type": "Copy",
+              "policy": {
+                "timeout": "0.01:00:00",
+                "retry": 2,
+                "retryIntervalInSeconds": 30
+              },
+              "typeProperties": {
+                "source": {
+                  "type": "BinarySource",
+                  "storeSettings": {
+                    "type": "HttpReadSettings",
+                    "requestMethod": "GET"
+                  },
+                  "formatSettings": {
+                    "type": "BinaryReadSettings"
+                  }
+                },
+                "sink": {
+                  "type": "BinarySink",
+                  "storeSettings": {
+                    "type": "AzureBlobFSWriteSettings"
+                  }
+                }
+              },
+              "inputs": [
+                {
+                  "referenceName": "DS_github_API",
+                  "type": "DatasetReference",
+                  "parameters": {
+                    "pFileName": {
+                      "value": "@item().name",
+                      "type": "Expression"
+                    }
+                  }
+                }
+              ],
+              "outputs": [
+                {
+                  "referenceName": "DS_ADLS_Bronze_Binary",
+                  "type": "DatasetReference",
+                  "parameters": {
+                    "pFolderPath": {
+                      "value": "@concat('bronze/github/', item().folder)",
+                      "type": "Expression"
+                    },
+                    "pFileName": {
+                      "value": "@item().name",
+                      "type": "Expression"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "annotations": []
+  }
+}

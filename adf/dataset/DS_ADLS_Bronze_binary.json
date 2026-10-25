@@ -1,0 +1,33 @@
+
+{
+  "name": "DS_ADLS_Bronze_binary",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "LS_ADLS_storage",
+      "type": "LinkedServiceReference"
+    },
+    "parameters": {
+      "pFolderPath": {
+        "type": "String"
+      },
+      "pFileName": {
+        "type": "String"
+      }
+    },
+    "type": "Binary",
+    "typeProperties": {
+      "location": {
+        "type": "AzureBlobFSLocation",
+        "fileSystem": "retail-data",
+        "folderPath": {
+          "value": "@dataset().pFolderPath",
+          "type": "Expression"
+        },
+        "fileName": {
+          "value": "@dataset().pFileName",
+          "type": "Expression"
+        }
+      }
+    }
+  }
+}
